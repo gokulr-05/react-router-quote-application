@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import LoadingSpinner from "../component/LoadingSpinner";
+
 import {
   Link,
   useLocation,
@@ -5,23 +8,46 @@ import {
   useSearchParams,
   Outlet,
 } from "react-router-dom";
+
 import QuoteItem from "../component/QuoteItem";
 import "./AllQuote.css";
 
 let AllQuote = () => {
+  let [isLoading, setIsLoading] = useState(false);
+  let [dataArr, setDataArr] = useState([]);
+
+  let fetchDataHandler = async () => {
+    setIsLoading(true);
+    try {
+      let response = await fetch(
+        "https://react-router-quote-app-default-rtdb.firebaseio.com/quote.json"
+      );
+
+      if (!response.ok) {
+        throw new Error("error occured");
+      }
+
+      let data = await response.json();
+
+      let arr = [];
+
+      for (let key in data) {
+        let obj = data[key];
+        arr.push(obj);
+      }
+      console.log("arr=", arr);
+      setDataArr(arr);
+      setIsLoading(false);
+    } catch (err) {
+      console.log("error=", err.message);
+    }
+  };
+
   let navigate2 = useNavigate();
   let location = useLocation();
   let [searchParams] = useSearchParams();
 
   let getSearchParams = searchParams.get("sort") === "asc";
-  console.log("location=", location);
-  console.log("searchParams=", searchParams);
-  console.log("getSearchParams=", getSearchParams);
-
-  let DUMMY_DATA = [
-    { id: "q1", title: "trust the process", author: "guru" },
-    { id: "q2", title: "believe in yourself ", author: "guru" },
-  ];
 
   let sortHandler = (e) => {
     navigate2(`/quote?sort=${getSearchParams ? "des" : "asc"}`, {
@@ -29,8 +55,13 @@ let AllQuote = () => {
     });
   };
 
+  useEffect(() => {
+    fetchDataHandler();
+  }, []);
+
   return (
     <div className="allquote-bucket-1">
+      {isLoading && <LoadingSpinner />}
       <div>
         <button
           onClick={sortHandler}
@@ -40,12 +71,12 @@ let AllQuote = () => {
         </button>
       </div>
       <hr />
-      {DUMMY_DATA.map((val) => {
+      {dataArr.map((val) => {
         return (
           <QuoteItem
             key={val.id}
             id={val.id}
-            title={val.title}
+            title={val.quote}
             author={val.author}
           />
         );
