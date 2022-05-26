@@ -34,19 +34,6 @@ let QuoteDetail = () => {
         </div>
       </div>
 
-      {/* <Routes>
-        <Route
-          to=":quoteID"
-          element={ */}
-      <div className="text-center">
-        <Link to="comments" className="btn btn-primary text-capitalize">
-          load comments
-        </Link>
-      </div>
-      {/* }
-        ></Route>
-      </Routes> */}
-
       <Outlet />
     </div>
   );

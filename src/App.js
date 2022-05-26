@@ -5,6 +5,8 @@ import AllQuote from "./pages/AllQuote";
 import QuoteDetail from "./pages/QuoteDetail";
 import Comments from "./pages/Comments";
 import NotFound from "./pages/NotFound";
+import LoadComment from "./pages/LoadComment";
+// import LoadComment from "./pages/LoadComment";
 
 let App = () => {
   return (
@@ -15,8 +17,10 @@ let App = () => {
         <Route path="/" element={<Navigate to="/quote" replace />} />
         <Route path="/quote/*" element={<AllQuote />}></Route>
         <Route path="/quote/:quoteID/*" element={<QuoteDetail />}>
+          <Route path="" element={<LoadComment />} />
           <Route path=":comments" element={<Comments />} />
         </Route>
+
         <Route path="/newquote" element={<NewQuote />} />
       </Routes>
     </div>

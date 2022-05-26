@@ -1,6 +1,10 @@
 import "./Comments.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 let Comments = () => {
+  let params1 = useParams();
+  let quoteID = params1.quoteID;
+
+  console.log("quoteID=", quoteID);
   return (
     <div className="text-capitalize comments-bucket rounded">
       <div>
@@ -26,6 +30,11 @@ let Comments = () => {
       <div className="text-center py-2">
         <h6 className="text-capitalize">comments...</h6>
         {/* <Link to="/quote">link</Link> */}
+      </div>
+      <div className="text-center">
+        <Link to={`/quote/${quoteID}`} className="btn btn-primary">
+          toggle
+        </Link>
       </div>
     </div>
   );

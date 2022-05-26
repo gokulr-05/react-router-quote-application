@@ -3,6 +3,7 @@ import {
   useLocation,
   useNavigate,
   useSearchParams,
+  Outlet,
 } from "react-router-dom";
 import QuoteItem from "../component/QuoteItem";
 import "./AllQuote.css";
@@ -49,6 +50,8 @@ let AllQuote = () => {
           />
         );
       })}
+
+      <Outlet />
     </div>
   );
 };
