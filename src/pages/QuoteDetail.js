@@ -7,7 +7,7 @@ let QuoteDetail = () => {
   let [isLoading, setIsLoading] = useState(false);
   let [dataArr, setDataArr] = useState([]);
 
-  console.log("dataArr=", dataArr);
+  // console.log("dataArr=", dataArr);
 
   let fetchDataHandler = async () => {
     setIsLoading(true);
@@ -28,7 +28,7 @@ let QuoteDetail = () => {
         let obj = data[key];
         arr.push(obj);
       }
-      console.log("arr=", arr);
+      // console.log("arr=", arr);
       setDataArr(arr);
       setIsLoading(false);
     } catch (err) {
@@ -41,13 +41,13 @@ let QuoteDetail = () => {
 
   let params = useParams();
   let quoteid = params.quoteID;
-  console.log("quoteid=", quoteid);
+  // console.log("quoteid=", quoteid);
 
   let [data] = dataArr.filter((val) => {
     return val.id.toString() === quoteid.toString();
   });
 
-  console.log("data=", data);
+  // console.log("data=", data);
 
   if (!isLoading && !data) {
     return (

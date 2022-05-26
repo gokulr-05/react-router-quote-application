@@ -16,7 +16,7 @@ let NewQuote = () => {
           method: "POST",
           body: JSON.stringify(obj),
           headers: {
-            "Content-type": "application/json",
+            "Content-Type": "application/json",
           },
         }
       );

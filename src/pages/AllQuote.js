@@ -35,7 +35,7 @@ let AllQuote = () => {
         let obj = data[key];
         arr.push(obj);
       }
-      console.log("arr=", arr);
+      // console.log("arr=", arr);
       setDataArr(arr);
       setIsLoading(false);
     } catch (err) {
@@ -59,9 +59,12 @@ let AllQuote = () => {
     fetchDataHandler();
   }, []);
 
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <div className="allquote-bucket-1">
-      {isLoading && <LoadingSpinner />}
       <div>
         <button
           onClick={sortHandler}
