@@ -6,7 +6,6 @@ import QuoteDetail from "./pages/QuoteDetail";
 import Comments from "./pages/Comments";
 import NotFound from "./pages/NotFound";
 import LoadComment from "./pages/LoadComment";
-// import LoadComment from "./pages/LoadComment";
 
 let App = () => {
   return (

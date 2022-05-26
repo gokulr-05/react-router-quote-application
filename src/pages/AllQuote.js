@@ -65,14 +65,14 @@ let AllQuote = () => {
 
   return (
     <div className="allquote-bucket-1">
-      <div>
+      {/* <div>
         <button
           onClick={sortHandler}
           className="text-capitalize btn btn-primary"
         >
           sort {getSearchParams ? "Descending" : "Ascending"}
         </button>
-      </div>
+      </div> */}
       <hr />
       {dataArr.map((val) => {
         return (

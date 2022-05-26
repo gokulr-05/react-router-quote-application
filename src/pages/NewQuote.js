@@ -1,8 +1,7 @@
 import "./NewQuote.css";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useHttp from "../hooks/use-http";
-import { addQuote } from "../lib/api";
+
 import LoadingSpinner from "../component/LoadingSpinner";
 
 let NewQuote = () => {
@@ -33,16 +32,9 @@ let NewQuote = () => {
     }
   };
 
-  let { sendRequest, status } = useHttp(addQuote);
   let navigate1 = useNavigate();
   let author = useRef("");
   let quote = useRef("");
-
-  useEffect(() => {
-    if (status === "completed") {
-      navigate1("/", { replace: true });
-    }
-  }, [status, navigate1]);
 
   let submitHander = (e) => {
     e.preventDefault();
@@ -54,8 +46,6 @@ let NewQuote = () => {
     }
 
     let id = Number(localStorage.getItem("quoteID"));
-    // console.log("id=", JSON.stringify(id));
-    // console.log("type of id=", typeof JSON.stringify(id));
 
     let obj = {
       id: id,
