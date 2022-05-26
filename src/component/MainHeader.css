@@ -1,0 +1,23 @@
+.header-bucket-2 {
+  width: 60%;
+}
+
+.active,
+.active:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.unactive,
+.unactive:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.title,
+.title:focus,
+.title:active,
+.title:hover {
+  text-decoration: none !important;
+  color: white;
+}
